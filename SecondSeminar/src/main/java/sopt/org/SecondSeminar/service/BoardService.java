@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import sopt.org.SecondSeminar.controller.board.dto.request.BoardRegisterRequestDto;
 import sopt.org.SecondSeminar.domain.board.Board;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static sopt.org.SecondSeminar.SecondSeminarApplication.boardList;
 
 @Service
@@ -23,5 +26,12 @@ public class BoardService {
 
         // 저장된 게시물의 아이디 값 반환
         return newBoard.getId();
+    }
+
+    public List<Board> searchByTitle(String title){
+        List<Board> searchedBoard = boardList.stream()
+                .filter(board -> board.getTitle().equals(title))
+                .collect(Collectors.toList());
+        return searchedBoard;
     }
 }
