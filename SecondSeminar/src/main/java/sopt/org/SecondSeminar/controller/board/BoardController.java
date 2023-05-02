@@ -22,7 +22,6 @@ public class BoardController {
         // 서비스 계층에 유저를 등록하는 메서드를 호출
         Long boardId = boardService.boardRegister(request);
         System.out.println(boardList.get(boardId.intValue() - 1).toString());
-
         return boardId + "번 게시물이 등록되었습니다!";
     }
     @GetMapping("/board/{boardId}")

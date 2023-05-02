@@ -20,7 +20,7 @@ public class UserController {
         return "유저 조회 성공";
     }
 
-    @GetMapping("user/search")
+    @GetMapping("/user/search")
     public String search(@RequestParam final String name) {
         System.out.println("유저 이름 검색 인자: " + name);
 
