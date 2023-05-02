@@ -1,6 +1,8 @@
 package sopt.org.SecondSeminar.controller.board;
+import ch.qos.logback.core.net.SyslogOutputStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import sopt.org.SecondSeminar.controller.board.dto.request.UpdateRequestDto;
 import sopt.org.SecondSeminar.domain.board.Board;
 import sopt.org.SecondSeminar.service.BoardService;
 import sopt.org.SecondSeminar.controller.board.dto.request.BoardRegisterRequestDto;
@@ -37,5 +39,17 @@ public class BoardController {
 //        System.out.println("게시물 검색 검색 인자: " + title);
 
         return boardService.searchByTitle(title);
+    }
+
+    @PutMapping("/board/{boardId}")
+    public String update(@PathVariable final Long boardId, @RequestBody UpdateRequestDto update){
+        System.out.println(boardId + "게시물 수정");
+        return boardService.updateBoard(boardId,update);
+    }
+
+    @DeleteMapping("/board/{boardId}")
+    public String delete(@PathVariable final Long boardId){
+        System.out.println(boardId + "번 게시물 삭제");
+        return boardService.deleteBoard(boardId);
     }
 }

@@ -13,7 +13,6 @@ public class Board {
 
     private String content;
 
-    private int age;
 
     public Board(String title, String writer, String content) {
         this.title = title;
@@ -24,6 +23,12 @@ public class Board {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setTitle(String title) {this.title = title;}
+
+    public void setWriter(String writer) {this.writer = writer;}
+
+    public void setContent(String content) {this.content = content;}
 
     @Override
     public String toString() {

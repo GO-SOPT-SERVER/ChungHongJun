@@ -2,6 +2,7 @@ package sopt.org.SecondSeminar.service;
 
 import org.springframework.stereotype.Service;
 import sopt.org.SecondSeminar.controller.board.dto.request.BoardRegisterRequestDto;
+import sopt.org.SecondSeminar.controller.board.dto.request.UpdateRequestDto;
 import sopt.org.SecondSeminar.domain.board.Board;
 
 import java.util.List;
@@ -33,5 +34,20 @@ public class BoardService {
                 .filter(board -> board.getTitle().equals(title))
                 .collect(Collectors.toList());
         return searchedBoard;
+    }
+    public String updateBoard(Long boardId, UpdateRequestDto requestDto){
+        Board board = boardList.get(boardId.intValue()-1);
+        board.setContent(requestDto.getContent());
+        board.setTitle(requestDto.getTitle());
+
+        return "게시물 수정" + board;
+    }
+
+    public String deleteBoard(Long boardId) {
+        if(boardId - 1 >= boardList.size()){
+            return "삭제할 게시물이 없음";
+        }
+        boardList.remove(boardId.intValue() - 1);
+        return "게시물 삭제 완료";
     }
 }
